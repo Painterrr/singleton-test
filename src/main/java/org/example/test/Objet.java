@@ -1,5 +1,6 @@
 package org.example.test;
 
+// classic singleton pattern
 public class Objet {
 
     private Objet() {}
