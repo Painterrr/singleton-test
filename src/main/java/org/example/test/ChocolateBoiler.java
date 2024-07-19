@@ -4,12 +4,22 @@ public class ChocolateBoiler {
     private boolean empty;
     private boolean boiled;
 
+    private static ChocolateBoiler cb;
+
     /**
      * 초콜릿 보일러가 비어있을 때만 작동.
      */
     private ChocolateBoiler() {
         empty = true;
         boiled = false;
+    }
+
+    public static ChocolateBoiler getInstance() {
+        if (cb == null) {
+            cb = new ChocolateBoiler();
+        }
+
+        return cb;
     }
 
     /**
