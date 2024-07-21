@@ -14,10 +14,10 @@
 <br>
 
 ## 키워드
--  Synchronized
--  volatile
-- DCL
-- enum
+- `Synchronized`
+- `volatile`
+- `DCL`
+- `enum`
 
 <br>
 
@@ -84,6 +84,9 @@ public class ChocolateBoiler {
     }  
 }
 ```
+<br>
+
+### 코드: enum
 ```
 package org.example.test;  
   
@@ -130,7 +133,7 @@ public enum ChocolateBoilerEnum {
 <br>
 
 ## 역량강화
-1. `synchronized`.
+1. `synchronized`<br>
 싱글톤 패턴에서는 스레드 간 하나의 객체 공유해야 함. 객체 필요할 때마다 synchronized 키워드로 코드 블록에 락 걸어서 객체 유일성 보장.
 
 - 장점: 원자성 및 가시성 보장으로 여러 스레드가 동시에 객체 생성 못함.
@@ -139,7 +142,7 @@ public enum ChocolateBoilerEnum {
 <br>
 <br>
 
-2.` volatile`.
+2.` volatile`<br>
 객체 생성 후 스레드 간 공유 데이터 문제 해결하는 방법. 
 자바의 스레드는 각자 캐시 저장소 보유. 
 필요할 때마다 캐시에서 값 읽어옴. 
@@ -151,7 +154,7 @@ public enum ChocolateBoilerEnum {
 <br>
 <br>
 
-3. `DCL (Double-Checked Locking)`.
+3. `DCL (Double-Checked Locking)`<br>
 객체 생성 로직에서 동기화 전후로 객체 생성 체크함.
 
 - 장점: 필요할 때만 동기화 수행하므로 synchronized 블록보다 성능 더 좋음. 가시성 문제 해결.
@@ -160,7 +163,7 @@ public enum ChocolateBoilerEnum {
 <br>
 <br>
 
-4. `enum`.
+4. `enum`<br>
 enum을 사용해 싱글톤 구현.
 (자바의 enum은 클래스 로딩 시점에 단 한 번만 인스턴스화됨)
 -> 별도 동기화 코드 필요 없음.
