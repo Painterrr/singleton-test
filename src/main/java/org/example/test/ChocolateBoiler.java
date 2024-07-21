@@ -29,7 +29,7 @@ public class ChocolateBoiler {
     // synchronized 전후로 객체 생성 체크.
     public static ChocolateBoiler getInstance() {
         if (cb == null) {
-            synchronized ((Singleton.class)) {
+            synchronized ((ChocolateBoiler.class)) {
                 if (cb == null) {
                     cb = new ChocolateBoiler();
                 }
