@@ -4,7 +4,13 @@ public class ChocolateBoiler {
     private boolean empty;
     private boolean boiled;
 
-    private static ChocolateBoiler cb;
+    // volatile을 사용하지 않으면
+    // 여러 스레드가 동일한 변수를 읽고 쓸 때
+    // 주 메모리에서 값을 읽지 아낳고, 자신의 캐시에 저장된 값을 사용.
+    // volatile 사용으로
+    // 각 객체들은 해당 객체(변수)를 생성할 때(메모리 값을 읽을 때)
+    // 메모리에서 직접 읽어옴.
+    private volatile static ChocolateBoiler cb;
 
     /**
      * 초콜릿 보일러가 비어있을 때만 작동.
@@ -18,9 +24,16 @@ public class ChocolateBoiler {
     // 다른 스레드는 공유 자원에 접근 못하고 대기.
     // -> 인스턴스 생성이 겹치지 않음(인스턴스 생성 동기화 문제 해결)
     // 다만, 인스턴스를 생성한 후에는 synchronized 불필요.
-    public static synchronized ChocolateBoiler getInstance() {
+    //
+    // DCL: Double Checked Locking
+    // synchronized 전후로 객체 생성 체크.
+    public static ChocolateBoiler getInstance() {
         if (cb == null) {
-            cb = new ChocolateBoiler();
+            synchronized ((Singleton.class)) {
+                if (cb == null) {
+                    cb = new ChocolateBoiler();
+                }
+            }
         }
 
         return cb;
